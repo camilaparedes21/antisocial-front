@@ -3,11 +3,17 @@ import type { User, Post, PostDetail, Tag, Comment } from '../types';
 const API_URL = 'http://localhost:3000';
 
 // Hace el fetch y, si la API responde con error, lanza un Error con su mensaje
-async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_URL}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  });
+  async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  let res: Response;
+  try {
+    res = await fetch(`${API_URL}${path}`, {
+      headers: { 'Content-Type': 'application/json' },
+      ...options,
+    });
+  } catch {
+    // fetch solo falla así cuando no hay conexión con el servidor
+    throw new Error('No se pudo conectar con el servidor. Intentá de nuevo más tarde.');
+  }
   const data = await res.json();
 
   if (!res.ok) {

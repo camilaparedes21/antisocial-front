@@ -1,0 +1,81 @@
+/* ===== Identidad visual de Anti-Social Net ===== */
+:root {
+  --as-violeta: #3b1f5c;
+  --as-violeta-claro: #6a3fa0;
+  --as-lima: #c6f24e;
+  --as-fondo: #f4f1f8;
+
+  /* Pisamos variables de Bootstrap para que todo use nuestra paleta */
+  --bs-body-font-family: 'Space Grotesk', system-ui, sans-serif;
+  --bs-body-bg: var(--as-fondo);
+  --bs-link-color-rgb: 106, 63, 160;
+  --bs-link-hover-color-rgb: 59, 31, 92;
+}
+
+/* Botón principal violeta */
+.btn-primary {
+  --bs-btn-bg: var(--as-violeta-claro);
+  --bs-btn-border-color: var(--as-violeta-claro);
+  --bs-btn-hover-bg: var(--as-violeta);
+  --bs-btn-hover-border-color: var(--as-violeta);
+  --bs-btn-active-bg: var(--as-violeta);
+  --bs-btn-disabled-bg: var(--as-violeta-claro);
+  --bs-btn-disabled-border-color: var(--as-violeta-claro);
+}
+
+/* Navbar y banner con el violeta oscuro */
+.as-navbar,
+.as-banner {
+  background-color: var(--as-violeta) !important;
+}
+
+.as-acento {
+  color: var(--as-lima);
+}
+
+/* Etiquetas */
+.as-tag {
+  background-color: var(--as-lima) !important;
+  color: var(--as-violeta) !important;
+  font-weight: 500;
+}
+
+/* Cards: sin borde y con una animación suave al pasar el mouse */
+.as-card {
+  border: none;
+  border-radius: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.as-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1.5rem rgba(59, 31, 92, 0.15) !important;
+}
+
+.as-card .card-img-top {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+/* Las cards blancas, para que resalten sobre el fondo lila */
+.card {
+  --bs-card-bg: #ffffff;
+}
+
+/* Avatar circular con las iniciales */
+.as-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--as-violeta-claro);
+  color: var(--as-lima);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Footer */
+.as-footer {
+  background-color: var(--as-violeta);
+  color: rgba(255, 255, 255, 0.7);
+}

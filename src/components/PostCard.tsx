@@ -1,6 +1,7 @@
-import { Card, Badge, Button } from 'react-bootstrap';
+import { Card, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import type { Post } from '../types';
+import Avatar from './Avatar';
 
 interface Props {
   post: Post;
@@ -10,7 +11,7 @@ function PostCard({ post }: Props) {
   const primeraImagen = post.imagen[0];
 
   return (
-    <Card className="h-100 shadow-sm">
+    <Card className="h-100 shadow-sm as-card">
       {primeraImagen && (
         <Card.Img
           variant="top"
@@ -20,12 +21,15 @@ function PostCard({ post }: Props) {
         />
       )}
       <Card.Body className="d-flex flex-column">
-        <Card.Subtitle className="mb-2 text-muted">@{post.idUser.nickName}</Card.Subtitle>
+        <div className="d-flex align-items-center gap-2 mb-2">
+         <Avatar nickName={post.idUser.nickName} size={32} />
+         <span className="fw-medium">@{post.idUser.nickName}</span>
+        </div>
         <Card.Text>{post.description}</Card.Text>
 
         <div className="mb-3">
           {post.tags.map((tag) => (
-            <Badge bg="secondary" className="me-1" key={tag._id}>
+            <Badge className="me-1 as-tag" key={tag._id}>
               #{tag.name}
             </Badge>
           ))}
@@ -33,9 +37,9 @@ function PostCard({ post }: Props) {
 
         <div className="mt-auto d-flex justify-content-between align-items-center">
           <small className="text-muted">💬 {post.cantidadComentarios} comentarios</small>
-          <Button as={Link} to={`/post/${post._id}`} size="sm">
-            Ver más
-          </Button>
+          <Link to={`/post/${post._id}`} className="btn btn-primary btn-sm">
+             Ver más
+          </Link>
         </div>
       </Card.Body>
     </Card>

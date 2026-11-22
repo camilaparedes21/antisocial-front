@@ -8,6 +8,7 @@ import Registro from './pages/Registro';
 import PostDetalle from './pages/PostDetalle';
 import Perfil from './pages/Perfil';
 import CrearPost from './pages/CrearPost';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -31,5 +32,17 @@ function App() {
     </BrowserRouter>
   );
 }
+
+<BrowserRouter>
+      <div className="d-flex flex-column min-vh-100">
+        <NavBar />
+        <Container className="flex-grow-1">
+          <Routes>
+            {/* ...las rutas quedan igual... */}
+          </Routes>
+        </Container>
+        <Footer />
+      </div>
+    </BrowserRouter>
 
 export default App;

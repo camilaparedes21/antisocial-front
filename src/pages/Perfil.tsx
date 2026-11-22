@@ -4,6 +4,7 @@ import { Row, Col, Spinner, Alert, Button, Card } from 'react-bootstrap';
 import PostCard from '../components/PostCard';
 import { getPosts } from '../services/api';
 import { useAuth } from '../context/useAuth';
+import Avatar from '../components/Avatar';
 import type { Post } from '../types';
 
 function Perfil() {
@@ -35,12 +36,15 @@ function Perfil() {
     <>
       <Card className="mb-4 shadow-sm">
         <Card.Body className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+          <div className="d-flex align-items-center gap-3">
+            <Avatar nickName={user.nickName} size={64} />
           <div>
             <h2 className="mb-0">@{user.nickName}</h2>
             <small className="text-muted">{posts.length} publicaciones</small>
           </div>
+        </div>
           <div className="d-flex gap-2">
-            <Button as={Link} to="/crear">Nueva publicación</Button>
+            <Link to="/crear" className="btn btn-primary">Nueva publicación</Link>
             <Button variant="outline-danger" onClick={handleLogout}>Cerrar sesión</Button>
           </div>
         </Card.Body>

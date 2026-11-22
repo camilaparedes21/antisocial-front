@@ -4,7 +4,9 @@ import { Card, Badge, Button, Spinner, Alert, Row, Col, ListGroup } from 'react-
 import CommentForm from '../components/CommentForm';
 import { getPost } from '../services/api';
 import { useAuth } from '../context/useAuth';
+import Avatar from '../components/Avatar';
 import type { PostDetail, Comment } from '../types';
+
 
 function PostDetalle() {
   const { id } = useParams();   // el :id de la URL
@@ -42,7 +44,10 @@ function PostDetalle() {
 
       <Card className="mb-4 shadow-sm">
         <Card.Body>
-          <Card.Subtitle className="mb-2 text-muted">@{post.idUser.nickName}</Card.Subtitle>
+          <div className="d-flex align-items-center gap-2 mb-3">
+          <Avatar nickName={post.idUser.nickName} />
+          <span className="fw-medium">@{post.idUser.nickName}</span>
+          </div>
           <Card.Text className="fs-5">{post.description}</Card.Text>
 
           {post.imagen.length > 0 && (
@@ -57,7 +62,7 @@ function PostDetalle() {
 
           <div>
             {post.tags.map((tag) => (
-              <Badge bg="secondary" className="me-1" key={tag._id}>#{tag.name}</Badge>
+              <Badge className="me-1 as-tag" key={tag._id}>#{tag.name}</Badge>
             ))}
           </div>
         </Card.Body>
@@ -78,11 +83,14 @@ function PostDetalle() {
       ) : (
         <ListGroup>
           {post.comentarios.map((c) => (
-            <ListGroup.Item key={c._id}>
-              <strong>@{c.idUser.nickName}</strong>{' '}
+            <ListGroup.Item key={c._id} className="d-flex gap-3">
+              <Avatar nickName={c.idUser.nickName} size={36} />
+               <div>
+               <strong>@{c.idUser.nickName}</strong>{' '}
               <small className="text-muted">{new Date(c.date).toLocaleDateString('es-AR')}</small>
-              <div>{c.content}</div>
-            </ListGroup.Item>
+            <div>{c.content}</div>
+  </div>
+</ListGroup.Item>
           ))}
         </ListGroup>
       )}
